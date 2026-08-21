@@ -1,58 +1,38 @@
 # Pokedex iOS
 
-Aplicación iOS desarrollada en **Swift** que utiliza **PokeAPI** y muestra un catálogo de Pokemon con listado, detalle, filtros avanzados y colecciones. 
+Aplicación nativa desarrollada con **Swift y UIKit** para explorar Pokémon, consultar su información y organizar una colección personal.
 
-Se realiza como práctica de aprendizaje de desarrollo iOS. 
+<p align="center">
+  <img src="./screenshots-app/pokemon-list.png" width="22%" alt="Listado de Pokémon">
+  <img src="./screenshots-app/pokemon-filters.png" width="22%" alt="Filtros de búsqueda">
+  <img src="./screenshots-app/pokemon-fire.png" width="22%" alt="Listado de Pokémon tipo Fuego">
+  <img src="./screenshots-app/pokemon-detail.png" width="22%" alt="Detalle de un Pokémon">
+</p>
 
-## Características principales
+> Proyecto formativo durante mis prácticas en Plexus Tech, bajo la mentoría de un desarrollador iOS senior. Desarrollado para profundizar en el leguaje Swift, aplicando una arquitectura desacoplada, componentes reutilizables, accesibilidad y pruebas automatizadas.
 
-* Listado de Pokemons con imagen y nombre con swipe y botones para añadir el pokemon a una colección
-* Búsqueda en tiempo real por nombre desde un buscador superior
-* Búsqueda mediante filtros avanzados de nombre, ID, tipos y/o estado de colección.
-* Galería reutilizable de imágenes y funcionalidad para hacer zoom con doble tap.
-* Accesibilidad con VoiceOver y tamaño de letra
+## ¿Qué permite hacer?
 
-## Patrones y conceptos usados
+La pantalla principal muestra un catálogo de Pokémon obtenido mediante [PokeAPI](https://pokeapi.co/). Desde ella se puede:
 
-* **MVVM** para separar vista y lógica de presentación
-* **Coordinators** para navegación entre pantallas
-* **Dependency Injection** para desacoplar dependencias y facilitar testing
-* **Combine** para el flujo reactivo de datos
-* **Decorator** para añadir caché y modificación del dominio
+* Explorar el listado de Pokémon.
+* Buscar Pokémon por nombre en tiempo real.
+* Aplicar filtros por nombre, identificador, tipo y estado de colección.
+* Clasificar cada Pokémon como **conseguido**, **deseado** o **sin clasificar**.
+* Acceder al detalle de cualquier Pokémon.
 
-## Flujo principal de la app
+En la pantalla de detalle se muestra su nombre, identificador, descripción, tipos y una galería de imágenes. Al pulsar dos veces sobre una imagen se abre una pantalla independiente que permite verla ampliada.
 
-### Listado
-La pantalla principal muestra una lista de Pokemon obtenida desde un repositorio. Sobre esa lista se aplican:
-* Búsqueda rápida local por nombre
-* Filtros avanzados
-* Estado de colección ('none', 'wanted', 'owned')
+La galería y la pantalla de zoom son componentes reutilizables creados con XIB.
 
-### Detalle de Pokemon
-Al seleccionar un Pokemon, se navega a una pantalla de detalle que muestra:
-* Galería de imágenes del Pokemon
-* Nombre
-* ID
-* Descripción
-* Tipo
+## Accesibilidad
 
-### Zoom
-Al hacer doble tap en una imagen de la galería, se abre una pantalla independiente de zoom.
+La galería está adaptada para su uso con **VoiceOver**. Cuando esta opción está activa, el desplazamiento horizontal se sustituye por controles que permiten avanzar o retroceder entre las imágenes de forma accesible.
 
-Tanto la galería como la pantalla de zoom son componentes reutilizables y cargables desde XIB.
+La interfaz también admite los ajustes de tamaño de texto configurados en el dispositivo.
 
-### VoiceOver
+## Stack
 
-Se ha tenido en cuenta el uso de VoiceOver en la galería de imágenes. Cuando este está activo se desactiva el scroll horizontal de la galería y aparecen unos botones de navegación que permiten ir a la imagen anterior o siguiente.
+`Swift` · `UIKit` · `XIB` · `MVVM` · `Coordinators` · `Dependency Injection` · `Combine` · `Swift Testing`
 
-## Testing
-
-El proyecto incluye test centrados en la lógica más importante:
-
-* Casos de uso
-* Coordinators
-* View Models
-* Decorators
-* Repositorios
-
-Se utiliza **Swift Testing** y se asegura una cobertura del 57%
+La aplicación utiliza una arquitectura **MVVM** para separar la interfaz de la lógica de presentación. Los Coordinators gestionan la navegación y la inyección de dependencias mediante protocolos reduce el acoplamiento y facilita las pruebas.
